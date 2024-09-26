@@ -4,11 +4,18 @@
 }
 
 header {
+  align-items: center;
+  flex-direction: column;
   background-color: blue;
-
   .prompt {
     background-color: white;
   }
+}
+
+body {
+  position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
 .display {

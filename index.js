@@ -15,6 +15,42 @@ whole array, the array will end up being sorted.
 const arr = [99, 2, 4, 52, 7, 1, 33, 3];
 
 // DOM Manipulation
+// const runAlgo = document.querySelector('runAlgo');
+const button = document.querySelector('.button');
+// const input = document.querySelector('.input');
+button.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const input = document.querySelector('.input');
+  const nonNumericRegex = /[^0-9,]/;
+  // test for valid input using regex
+  if (nonNumericRegex.test(input.value)) {
+    // append info this isn't valid
+    const invalidInput = document.createElement('p');
+    invalidInput.innerText = 'Please enter a series of numbers';
+    input.appendChild(invalidInput);
+  } else {
+    // convert input str to valid num array
+    const inputNums = inputToNum(input.value);
+    // if valid input
+    const sortedNums = selectionSort(inputNums);
+    // return
+    console.log({ sortedNums });
+  }
+});
+
+const inputToNum = (str) => {
+  const nonNumericRegex = /[^0-9,]/;
+
+  // validate input
+  if (nonNumericRegex.test(str)) {
+    console.log('invalid input');
+  } else {
+    // convert input string to array of numbers
+    const validInput = str.split(',').map((e) => Number(e));
+    return validInput;
+  }
+};
 
 const selectionSort = (array) => {
   for (let i = 0; i < array.length - 1; i++) {
