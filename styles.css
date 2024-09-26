@@ -7,12 +7,14 @@ header {
   align-items: center;
   flex-direction: column;
   background-color: blue;
+
   .prompt {
     background-color: white;
   }
 }
 
 body {
+  display: block;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -20,4 +22,11 @@ body {
 
 .display {
   background-color: red;
+}
+
+.visualizer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

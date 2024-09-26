@@ -32,13 +32,16 @@ button.addEventListener('click', (e) => {
   } else {
     // convert input str to valid num array
     const inputNums = inputToNum(input.value);
-    // if valid input
+    // if valid input - init visual
+    createVisual(inputNums);
+    // TODO create button to sort?
     const sortedNums = selectionSort(inputNums);
     // return
     console.log({ sortedNums });
   }
 });
 
+// Conversion of Number / Input validation
 const inputToNum = (str) => {
   const nonNumericRegex = /[^0-9,]/;
 
@@ -49,6 +52,19 @@ const inputToNum = (str) => {
     // convert input string to array of numbers
     const validInput = str.split(',').map((e) => Number(e));
     return validInput;
+  }
+};
+
+// Init Visualizer
+const createVisual = (array) => {
+  const visualizer = document.querySelector('.visualizer');
+  for (const num of array) {
+    const box = document.createElement('p');
+    box.innerText = num;
+    box.style.border = '1px solid black';
+    box.style.padding = '1em';
+    box.style.backgroundColor = 'yellow';
+    visualizer.appendChild(box);
   }
 };
 
