@@ -58,9 +58,10 @@ const inputToNum = (str) => {
 // Init Visualizer
 const createVisual = (array) => {
   const visualizer = document.querySelector('.visualizer');
-  for (const num of array) {
+  for (let i = 0; i < array.length; i++) {
     const box = document.createElement('p');
-    box.innerText = num;
+    box.setAttribute('id', `idx${i}`);
+    box.innerText = array[i];
     box.style.border = '1px solid black';
     box.style.padding = '1em';
     box.style.backgroundColor = 'yellow';
@@ -68,16 +69,44 @@ const createVisual = (array) => {
   }
 };
 
-const selectionSort = (array) => {
+// delay for visualizer to work logic
+const delay = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+const selectionSort = async (array) => {
   for (let i = 0; i < array.length - 1; i++) {
     let curr = i;
     let min = i;
+
+    // highlight dom elms currently getting sorted
+    const currNum = document.getElementById(`idx${curr}`);
+    console.log({ currNum });
+    currNum.style.border = '2px solid purple';
+    let minNum = document.getElementById(`idx${min}`);
+    minNum.style.border = '2px solid red';
+
+    await delay(3000);
+
     for (let j = i + 1; j < array.length; j++) {
-      if (array[j] < array[min]) min = j;
+      const compareNum = document.getElementById(`idx${j}`);
+      if (array[j] < array[min]) {
+        min = j;
+        minNum.style.border = 'none';
+        minNum = document.getElementById(`idx${min}`);
+        minNum.style.border = '2px solid blue';
+        await delay(1000);
+      }
     }
+    // swap visual vals - bold sorted portion
+    let currText = currNum.innerText;
+    currNum.innerText = array[min];
+    currNum.style.fontWeight = 'bold';
+    minNum.innerText = currText;
+
     [array[curr], array[min]] = [array[min], array[curr]];
   }
   return array;
 };
 
-console.log(selectionSort(arr));
+// console.log(selectionSort(arr));
