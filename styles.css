@@ -31,3 +31,21 @@ body {
   justify-content: center;
   background-color: white;
 }
+
+.box {
+  background-color: yellow;
+  padding: 1em;
+  border: 1px solid black;
+}
+
+.box.current {
+  border: 3px solid red;
+}
+
+.box.active {
+  background-color: grey;
+}
+
+.box.min {
+  border: 3px solid blue;
+}

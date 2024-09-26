@@ -32,6 +32,8 @@ button.addEventListener('click', (e) => {
   } else {
     // convert input str to valid num array
     const inputNums = inputToNum(input.value);
+    // clear input box
+    input.value = '';
     // if valid input - init visual
     createVisual(inputNums);
     // TODO create button to sort?
@@ -43,16 +45,9 @@ button.addEventListener('click', (e) => {
 
 // Conversion of Number / Input validation
 const inputToNum = (str) => {
-  const nonNumericRegex = /[^0-9,]/;
-
-  // validate input
-  if (nonNumericRegex.test(str)) {
-    console.log('invalid input');
-  } else {
-    // convert input string to array of numbers
-    const validInput = str.split(',').map((e) => Number(e));
-    return validInput;
-  }
+  // convert to array split by commas, elms to nums
+  const validInput = str.split(',').map((e) => Number(e));
+  return validInput;
 };
 
 // Init Visualizer
@@ -61,10 +56,8 @@ const createVisual = (array) => {
   for (let i = 0; i < array.length; i++) {
     const box = document.createElement('p');
     box.setAttribute('id', `idx${i}`);
+    box.classList.add('box');
     box.innerText = array[i];
-    box.style.border = '1px solid black';
-    box.style.padding = '1em';
-    box.style.backgroundColor = 'yellow';
     visualizer.appendChild(box);
   }
 };
@@ -81,30 +74,38 @@ const selectionSort = async (array) => {
 
     // highlight dom elms currently getting sorted
     const currNum = document.getElementById(`idx${curr}`);
-    console.log({ currNum });
-    currNum.style.border = '2px solid purple';
+    currNum.classList.add('current');
     let minNum = document.getElementById(`idx${min}`);
-    minNum.style.border = '2px solid red';
 
-    await delay(3000);
+    await delay(1000);
 
     for (let j = i + 1; j < array.length; j++) {
       const compareNum = document.getElementById(`idx${j}`);
+      compareNum.classList.add('active');
+      minNum.classList.add('min');
+
       if (array[j] < array[min]) {
         min = j;
-        minNum.style.border = 'none';
+
+        minNum.classList.remove('min');
         minNum = document.getElementById(`idx${min}`);
-        minNum.style.border = '2px solid blue';
-        await delay(1000);
+        await delay(500);
       }
+      await delay(250);
+      compareNum.classList.remove('active');
     }
     // swap visual vals - bold sorted portion
     let currText = currNum.innerText;
     currNum.innerText = array[min];
     currNum.style.fontWeight = 'bold';
+    currNum.style.backgroundColor = 'black';
+    currNum.style.color = 'white';
     minNum.innerText = currText;
 
     [array[curr], array[min]] = [array[min], array[curr]];
+
+    // deactivate curr because we're moving onto the next iteration
+    currNum.classList.remove('current');
   }
   return array;
 };
