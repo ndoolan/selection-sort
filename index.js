@@ -62,7 +62,7 @@ const createVisual = (array) => {
   }
 };
 
-// delay for visualizer to work logic
+// delay for visualizer to handle CSS changes
 const delay = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
@@ -90,9 +90,11 @@ const selectionSort = async (array) => {
         minNum.classList.remove('min');
         minNum = document.getElementById(`idx${min}`);
         await delay(500);
+        minNum.classList.add('min');
       }
       await delay(250);
       compareNum.classList.remove('active');
+      minNum.classList.remove('min');
     }
     // swap visual vals - bold sorted portion
     let currText = currNum.innerText;
