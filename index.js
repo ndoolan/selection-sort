@@ -109,6 +109,13 @@ const selectionSort = async (array) => {
     // deactivate curr because we're moving onto the next iteration
     currNum.classList.remove('current');
   }
+
+  // fix css on last box
+  const finalBox = document.getElementById(`idx${array.length - 1}`);
+  finalBox.style.fontWeight = 'bold';
+  finalBox.style.backgroundColor = 'black';
+  finalBox.style.color = 'white';
+
   return array;
 };
 
