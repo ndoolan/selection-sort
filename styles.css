@@ -144,3 +144,21 @@ h1 {
 .box.min {
   border: 3px solid blue;
 }
+
+.error-modal {
+  display: none;
+  border-radius: 20px;
+  background-color: white;
+  height: 22%;
+  width: 60%;
+  padding: 5px;
+  margin-top: 2%;
+  font-size: 1rem;
+}
+
+.close-modal {
+  background-color: red;
+  height: 10%;
+  width: 60%;
+  padding: 5px;
+}

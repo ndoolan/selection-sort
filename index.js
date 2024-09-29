@@ -1,34 +1,45 @@
-/*
-
-Given an array of integers, sort the array in-place and return the array.
-Do not create a new array in memory. Instead, modify the array as given. Do not
-use the array sort method built in to the array prototype while solving the
-problem. The integers should be in ascending order from left to right.
-
-We will sort the array using a strategy called selection sort, which works as
-follows. First, put the smallest number in the array at position 0. Then, put
-the second-smallest number in the array at position 1. Then, put the
-third-smallest number in the array at position 2 etc. After going through the
-whole array, the array will end up being sorted.
-
-*/
-const arr = [99, 2, 4, 52, 7, 1, 33, 3];
-
 // DOM Manipulation
-// const runAlgo = document.querySelector('runAlgo');
+
+// error modal functions
+const errorModal = document.querySelector('.error-modal');
+errorModal.addEventListener('click', () => {
+  const modal = document.querySelector('.error-modal');
+  const sortButton = document.querySelector('.button');
+  const userInput = document.querySelector('.input');
+  modal.style.display = 'none';
+  sortButton.style.display = 'flex';
+  userInput.style.display = 'flex';
+});
+
+const showModal = () => {
+  const modal = document.querySelector('.error-modal');
+  const errorMessage = document.querySelector('.error-message');
+  const sortButton = document.querySelector('.button');
+  const userInput = document.querySelector('.input');
+  errorMessage.innerText = 'Please enter a series of numbers';
+  modal.style.display = 'block';
+  sortButton.style.display = 'none';
+  userInput.style.display = 'none';
+};
+
+// button to trigger Selection Sort
 const button = document.querySelector('.button');
-// const input = document.querySelector('.input');
 button.addEventListener('click', (e) => {
   e.preventDefault();
 
-  const input = document.querySelector('.input');
+  // check if an array already exists - if so clear all elms in visualizer
+  const visualizer = document.querySelector('.visualizer');
+  while (visualizer.firstChild) {
+    visualizer.removeChild(visualizer.firstChild);
+  }
+
+  const main = document.querySelector('main');
+  const input = document.querySelector('input');
   const nonNumericRegex = /[^0-9,]/;
   // test for valid input using regex
   if (nonNumericRegex.test(input.value)) {
     // append info this isn't valid
-    const invalidInput = document.createElement('p');
-    invalidInput.innerText = 'Please enter a series of numbers';
-    input.appendChild(invalidInput);
+    showModal();
   } else {
     // convert input str to valid num array
     const inputNums = inputToNum(input.value);
