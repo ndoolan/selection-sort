@@ -1,15 +1,5 @@
 // DOM Manipulation
 
-// pause algo function
-// let paused = false;
-// const pauseButton = document.querySelector('.pause-button');
-// pauseButton.addEventListener('click', () => {
-//   paused === false ? true : false;
-// });
-// const pause = () => {
-//   pause === false ? true : false;
-// };
-
 // TODO: after dom - content loaded do stuff
 
 let paused = false;
@@ -78,6 +68,11 @@ button.addEventListener('click', (e) => {
     input.value = '';
     // if valid input - init visual
     createVisual(inputNums);
+    // reveal tool tip
+    console.log('pre tool tip');
+    const tooltip = document.querySelector('.tooltip');
+    tooltip.style.display = 'flex';
+
     // TODO create button to sort?
     const sortedNums = selectionSort(inputNums);
     // return
@@ -108,11 +103,6 @@ const createVisual = (array) => {
 const delay = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
-
-// pass in a j + i have them as default values otherwise
-// if paused, break , break break
-// logic that updates i + j
-// how curr and min kept track of
 
 const selectionSort = async (array) => {
   // Set up Pause button
