@@ -63,7 +63,7 @@ input {
   padding: 5px;
 }
 
-button {
+.sort-button {
   background-color: white;
   border-radius: 20px;
   height: 10%;
@@ -138,15 +138,28 @@ h1 {
 }
 
 .box.active {
-  background-color: grey;
+  background-color: white;
 }
 
 .box.min {
   border: 3px solid blue;
 }
 
+.pause {
+  position: block;
+  background-color: white;
+  border-radius: 20px;
+  height: 10%;
+  width: 60%;
+  padding: 5px;
+  margin-top: 2%;
+  font-size: 1rem;
+  color: black;
+}
+
 .error-modal {
   display: none;
+  flex-direction: row;
   border-radius: 20px;
   background-color: white;
   height: 22%;
@@ -157,8 +170,10 @@ h1 {
 }
 
 .close-modal {
-  background-color: red;
-  height: 10%;
-  width: 60%;
-  padding: 5px;
+  background-color: white;
+  color: black;
+  border: none;
+  height: 5%;
+  width: 5%;
+  padding: 10px;
 }

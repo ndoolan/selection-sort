@@ -1,5 +1,35 @@
 // DOM Manipulation
 
+// pause algo function
+// let paused = false;
+// const pauseButton = document.querySelector('.pause-button');
+// pauseButton.addEventListener('click', () => {
+//   paused === false ? true : false;
+// });
+// const pause = () => {
+//   pause === false ? true : false;
+// };
+
+// TODO: after dom - content loaded do stuff
+
+let paused = false;
+const pauseButton = document.querySelector('.pause-button');
+const resumeButton = document.querySelector('.resume-button');
+pauseButton.addEventListener('click', () => {
+  paused = true;
+});
+
+const pauseFunction = async () => {
+  return new Promise((resolve) => {
+    resumeButton.addEventListener('click', () => {
+      paused = false;
+      resolve();
+    });
+  });
+};
+// can we set a click event that references the same promsie and resolves it
+//
+
 // error modal functions
 const errorModal = document.querySelector('.error-modal');
 errorModal.addEventListener('click', () => {
@@ -12,18 +42,19 @@ errorModal.addEventListener('click', () => {
 });
 
 const showModal = () => {
-  const modal = document.querySelector('.error-modal');
+  const errorModal = document.querySelector('.error-modal');
   const errorMessage = document.querySelector('.error-message');
   const sortButton = document.querySelector('.button');
   const userInput = document.querySelector('.input');
   errorMessage.innerText = 'Please enter a series of numbers';
-  modal.style.display = 'block';
+  // TODO - fix inheritance so modal overshadows things
+  errorModal.style.display = 'flex';
   sortButton.style.display = 'none';
   userInput.style.display = 'none';
 };
 
 // button to trigger Selection Sort
-const button = document.querySelector('.button');
+const button = document.querySelector('.sort-button');
 button.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -78,7 +109,24 @@ const delay = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+// pass in a j + i have them as default values otherwise
+// if paused, break , break break
+// logic that updates i + j
+// how curr and min kept track of
+
 const selectionSort = async (array) => {
+  // Set up Pause button
+  // let paused = false;
+  // const pauseButton = document.querySelector('.pause-button');
+  // pauseButton.addEventListener('click', () => {
+  //   paused = true;
+  // });
+  // // resume button
+  // const resumeButton = document.querySelector('.resume-button');
+  // resumeButton.addEventListener('click', () => {
+  //   paused = false;
+  // });
+
   for (let i = 0; i < array.length - 1; i++) {
     let curr = i;
     let min = i;
@@ -91,9 +139,18 @@ const selectionSort = async (array) => {
     await delay(1000);
 
     for (let j = i + 1; j < array.length; j++) {
+      // if paused, setTimeout Loop
       const compareNum = document.getElementById(`idx${j}`);
       compareNum.classList.add('active');
       minNum.classList.add('min');
+
+      if (paused) {
+        // display none?
+        // dynamic adding of resume button
+        // only reveal the pause
+        console.log('inside pause');
+        await pauseFunction();
+      }
 
       if (array[j] < array[min]) {
         min = j;
