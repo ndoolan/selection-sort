@@ -68,8 +68,7 @@ button.addEventListener('click', (e) => {
     input.value = '';
     // if valid input - init visual
     createVisual(inputNums);
-    // reveal tool tip
-    console.log('pre tool tip');
+    // reveal tool tip - we have a valid input
     const tooltip = document.querySelector('.tooltip');
     tooltip.style.display = 'flex';
 
@@ -105,18 +104,6 @@ const delay = (ms) => {
 };
 
 const selectionSort = async (array) => {
-  // Set up Pause button
-  // let paused = false;
-  // const pauseButton = document.querySelector('.pause-button');
-  // pauseButton.addEventListener('click', () => {
-  //   paused = true;
-  // });
-  // // resume button
-  // const resumeButton = document.querySelector('.resume-button');
-  // resumeButton.addEventListener('click', () => {
-  //   paused = false;
-  // });
-
   for (let i = 0; i < array.length - 1; i++) {
     let curr = i;
     let min = i;
