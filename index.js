@@ -21,27 +21,27 @@ const pauseFunction = async () => {
 //
 
 // error modal functions
-const errorModal = document.querySelector('.error-modal');
-errorModal.addEventListener('click', () => {
-  const modal = document.querySelector('.error-modal');
-  const sortButton = document.querySelector('.button');
-  const userInput = document.querySelector('.input');
-  modal.style.display = 'none';
-  sortButton.style.display = 'flex';
-  userInput.style.display = 'flex';
-});
+// const errorModal = document.querySelector('.error-modal');
+// errorModal.addEventListener('click', () => {
+//   const modal = document.querySelector('.error-modal');
+//   const sortButton = document.querySelector('.button');
+//   const userInput = document.querySelector('.input');
+//   modal.style.display = 'none';
+//   sortButton.style.display = 'flex';
+//   userInput.style.display = 'flex';
+// });
 
-const showModal = () => {
-  const errorModal = document.querySelector('.error-modal');
-  const errorMessage = document.querySelector('.error-message');
-  const sortButton = document.querySelector('.button');
-  const userInput = document.querySelector('.input');
-  errorMessage.innerText = 'Please enter a series of numbers';
-  // TODO - fix inheritance so modal overshadows things
-  errorModal.style.display = 'flex';
-  sortButton.style.display = 'none';
-  userInput.style.display = 'none';
-};
+// const showModal = () => {
+//   const errorModal = document.querySelector('.error-modal');
+//   const errorMessage = document.querySelector('.error-message');
+//   const sortButton = document.querySelector('.button');
+//   const userInput = document.querySelector('.input');
+//   errorMessage.innerText = 'Please enter a series of numbers';
+//   // TODO - fix inheritance so modal overshadows things
+//   errorModal.style.display = 'flex';
+//   sortButton.style.display = 'none';
+//   userInput.style.display = 'none';
+// };
 
 // button to trigger Selection Sort
 const button = document.querySelector('.sort-button');
@@ -60,7 +60,8 @@ button.addEventListener('click', (e) => {
   // test for valid input using regex
   if (nonNumericRegex.test(input.value)) {
     // append info this isn't valid
-    showModal();
+    const errorMessage = document.querySelector('.error-message');
+    errorMessage.innerText = 'Please enter a series of numbers';
   } else {
     // convert input str to valid num array
     const inputNums = inputToNum(input.value);

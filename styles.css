@@ -191,6 +191,14 @@ h1 {
   }
 }
 
+.error-message {
+  display: flex;
+  font-size: 1rem;
+  padding: 5px;
+  margin-top: 2%;
+  color: red;
+}
+
 .error-modal {
   display: none;
   flex-direction: row;
