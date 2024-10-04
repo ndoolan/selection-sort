@@ -231,15 +231,19 @@ h1 {
   align-items: center;
   justify-content: center;
   /* height: 20%; */
-  gap: 2%;
   width: 50%;
 
   .min-key {
     color: rgba(60, 103, 218, 1);
+    border: 1px solid rgba(60, 103, 218, 1);
+    padding: 2%;
+    margin-top: 5%;
   }
 
   .curr-key {
     color: rgba(19, 250, 247, 1);
+    border: 1px solid rgba(19, 250, 247, 1);
+    padding: 2%;
   }
 }
 
