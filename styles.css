@@ -92,6 +92,14 @@ input {
   }
 }
 
+.error-message {
+  display: flex;
+  font-size: 1rem;
+  padding: 5px;
+  margin-top: 2%;
+  color: red;
+}
+
 h1 {
   background: linear-gradient(
     90deg,
@@ -191,15 +199,31 @@ h1 {
   }
 }
 
-.error-message {
-  display: flex;
-  font-size: 1rem;
-  padding: 5px;
-  margin-top: 2%;
-  color: red;
+.tooltip {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  height: 15%;
+  width: 30%;
+  background-color: black;
+  margin-top: 5%;
 }
 
-.error-modal {
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+/* *************************** NOT IN USE *************************** */
+/* .error-modal {
   display: none;
   flex-direction: row;
   border-radius: 20px;
@@ -218,16 +242,4 @@ h1 {
   height: 5%;
   width: 5%;
   padding: 10px;
-}
-
-.tooltip {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid transparent;
-  height: 15%;
-  width: 30%;
-  background-color: black;
-  margin-top: 5%;
-}
+} */

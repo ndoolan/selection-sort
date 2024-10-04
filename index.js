@@ -1,7 +1,9 @@
 // DOM Manipulation
 
 // TODO: after dom - content loaded do stuff
-
+const selectedSpeed = document.querySelector('.speed');
+console.log('selected?', selectedSpeed);
+let speed = 1;
 let paused = false;
 const pauseButton = document.querySelector('.pause-button');
 const resumeButton = document.querySelector('.resume-button');
@@ -17,9 +19,8 @@ const pauseFunction = async () => {
     });
   });
 };
-// can we set a click event that references the same promsie and resolves it
-//
 
+// OPTIONAL: Modal to display error messages
 // error modal functions
 // const errorModal = document.querySelector('.error-modal');
 // errorModal.addEventListener('click', () => {
