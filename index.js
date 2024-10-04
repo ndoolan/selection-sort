@@ -54,15 +54,22 @@ button.addEventListener('click', (e) => {
   while (visualizer.firstChild) {
     visualizer.removeChild(visualizer.firstChild);
   }
-
-  const main = document.querySelector('main');
+  // Input Error Handling
   const input = document.querySelector('input');
+  const errorMessage = document.querySelector('.error-message');
+
+  // Handle NO-INPUT error
+  if (input.value.length === 0) {
+    errorMessage.innerText = `You haven't entered anything, pal`;
+    return;
+  }
+
   const nonNumericRegex = /[^0-9,]/;
-  // test for valid input using regex
+  // Handle INVALID-INPUT error
   if (nonNumericRegex.test(input.value)) {
     // append info this isn't valid
-    const errorMessage = document.querySelector('.error-message');
     errorMessage.innerText = 'Please enter a series of numbers';
+    return;
   } else {
     // convert input str to valid num array
     const inputNums = inputToNum(input.value);
@@ -118,16 +125,11 @@ const selectionSort = async (array) => {
     await delay(1000);
 
     for (let j = i + 1; j < array.length; j++) {
-      // if paused, setTimeout Loop
       const compareNum = document.getElementById(`idx${j}`);
       compareNum.classList.add('active');
       minNum.classList.add('min');
 
       if (paused) {
-        // display none?
-        // dynamic adding of resume button
-        // only reveal the pause
-        console.log('inside pause');
         await pauseFunction();
       }
 
@@ -143,7 +145,7 @@ const selectionSort = async (array) => {
       compareNum.classList.remove('active');
       minNum.classList.remove('min');
     }
-    // swap visual vals - bold sorted portion
+    // Swap minimum and current values in visualizer
     let currText = currNum.innerText;
     currNum.innerText = array[min];
     currNum.style.fontWeight = 'bold';
