@@ -1,9 +1,13 @@
 // DOM Manipulation
 
 // TODO: after dom - content loaded do stuff
+
+// Select Speed Visualizer Runs
 const selectedSpeed = document.querySelector('.speed');
 console.log('selected?', selectedSpeed);
 let speed = 1;
+
+// Pause Running Algo
 let paused = false;
 const pauseButton = document.querySelector('.pause-button');
 const resumeButton = document.querySelector('.resume-button');
@@ -20,31 +24,7 @@ const pauseFunction = async () => {
   });
 };
 
-// OPTIONAL: Modal to display error messages
-// error modal functions
-// const errorModal = document.querySelector('.error-modal');
-// errorModal.addEventListener('click', () => {
-//   const modal = document.querySelector('.error-modal');
-//   const sortButton = document.querySelector('.button');
-//   const userInput = document.querySelector('.input');
-//   modal.style.display = 'none';
-//   sortButton.style.display = 'flex';
-//   userInput.style.display = 'flex';
-// });
-
-// const showModal = () => {
-//   const errorModal = document.querySelector('.error-modal');
-//   const errorMessage = document.querySelector('.error-message');
-//   const sortButton = document.querySelector('.button');
-//   const userInput = document.querySelector('.input');
-//   errorMessage.innerText = 'Please enter a series of numbers';
-//   // TODO - fix inheritance so modal overshadows things
-//   errorModal.style.display = 'flex';
-//   sortButton.style.display = 'none';
-//   userInput.style.display = 'none';
-// };
-
-// button to trigger Selection Sort
+// Button to trigger Selection Sort
 const button = document.querySelector('.sort-button');
 button.addEventListener('click', (e) => {
   e.preventDefault();
@@ -54,13 +34,19 @@ button.addEventListener('click', (e) => {
   while (visualizer.firstChild) {
     visualizer.removeChild(visualizer.firstChild);
   }
-  // Input Error Handling
+  // Input Error Handling - Nodes
   const input = document.querySelector('input');
   const errorMessage = document.querySelector('.error-message');
 
   // Handle NO-INPUT error
   if (input.value.length === 0) {
     errorMessage.innerText = `You haven't entered anything, pal`;
+    return;
+  }
+
+  // Handle Periods error
+  if (input.value.includes('.')) {
+    errorMessage.innerText = `Numbers separated by commas Meaty Human`;
     return;
   }
 
@@ -75,16 +61,13 @@ button.addEventListener('click', (e) => {
     const inputNums = inputToNum(input.value);
     // clear input box
     input.value = '';
-    // if valid input - init visual
+    // Valid Input = Initialize Visualizer
     createVisual(inputNums);
-    // reveal tool tip - we have a valid input
+    // Reveal Tooltip with Visualizer
     const tooltip = document.querySelector('.tooltip');
     tooltip.style.display = 'flex';
 
-    // TODO create button to sort?
     const sortedNums = selectionSort(inputNums);
-    // return
-    console.log({ sortedNums });
   }
 });
 
@@ -141,7 +124,7 @@ const selectionSort = async (array) => {
         await delay(500);
         minNum.classList.add('min');
       }
-      await delay(250);
+      await delay(500);
       compareNum.classList.remove('active');
       minNum.classList.remove('min');
     }
@@ -168,4 +151,26 @@ const selectionSort = async (array) => {
   return array;
 };
 
-// console.log(selectionSort(arr));
+// OPTIONAL: Modal to display error messages
+// error modal functions
+// const errorModal = document.querySelector('.error-modal');
+// errorModal.addEventListener('click', () => {
+//   const modal = document.querySelector('.error-modal');
+//   const sortButton = document.querySelector('.button');
+//   const userInput = document.querySelector('.input');
+//   modal.style.display = 'none';
+//   sortButton.style.display = 'flex';
+//   userInput.style.display = 'flex';
+// });
+
+// const showModal = () => {
+//   const errorModal = document.querySelector('.error-modal');
+//   const errorMessage = document.querySelector('.error-message');
+//   const sortButton = document.querySelector('.button');
+//   const userInput = document.querySelector('.input');
+//   errorMessage.innerText = 'Please enter a series of numbers';
+//   // TODO - fix inheritance so modal overshadows things
+//   errorModal.style.display = 'flex';
+//   sortButton.style.display = 'none';
+//   userInput.style.display = 'none';
+// };
