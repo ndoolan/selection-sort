@@ -2,9 +2,8 @@
 // TODO: after dom - content loaded do stuff
 
 // Select Speed Visualizer Runs
-const selectedSpeed = document.querySelector('.speed');
-console.log('selected?', selectedSpeed.value);
-let speed = 1;
+// const selectedSpeed = document.querySelector('.speed');
+// let speed = selectedSpeed.value;
 
 // Save Input Array for Replay Button?
 let replayArray;
@@ -109,11 +108,14 @@ const createVisual = (array) => {
 
 // delay for visualizer to handle CSS changes
 const delay = (ms) => {
-  return new Promise((resolve) => setTimeout(resolve, ms * speed));
+  const selectedSpeed = document.querySelector('.speed');
+  console.log('old speed ===>', ms);
+  let newSpeed = ms * Number(selectedSpeed.value);
+  console.log('new speed ===>', newSpeed);
+  return new Promise((resolve) => setTimeout(resolve, newSpeed));
 };
 
 const selectionSort = async (array) => {
-  console.log('speed on run', selectedSpeed.value);
   for (let i = 0; i < array.length - 1; i++) {
     let curr = i;
     let min = i;
