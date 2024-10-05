@@ -199,6 +199,29 @@ h1 {
   }
 }
 
+.replay-button {
+  position: block;
+  background-color: white;
+  border-radius: 20px;
+  height: 10%;
+  width: 60%;
+  padding: 5px;
+  margin-top: 2%;
+  font-size: 1rem;
+  color: black;
+  &:hover {
+    cursor: pointer;
+    background: linear-gradient(
+      90deg,
+      rgba(60, 103, 218, 1) 0%,
+      rgba(40, 177, 232, 1) 30%,
+      rgba(19, 250, 247, 1) 60%,
+      rgba(129, 245, 238, 1) 80%,
+      rgba(239, 240, 229, 1) 100%
+    );
+  }
+}
+
 .tooltip {
   display: none;
   flex-direction: row;

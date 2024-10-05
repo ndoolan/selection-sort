@@ -1,11 +1,19 @@
 // DOM Manipulation
-
 // TODO: after dom - content loaded do stuff
 
 // Select Speed Visualizer Runs
 const selectedSpeed = document.querySelector('.speed');
-console.log('selected?', selectedSpeed);
+console.log('selected?', selectedSpeed.value);
 let speed = 1;
+
+// Save Input Array for Replay Button?
+let replayArray;
+// Replay Button
+const replayButton = document.querySelector('.replay-button');
+replayButton.addEventListener('click', () => {
+  console.log(replayArray);
+  selectionSort(replayArray);
+});
 
 // Pause Running Algo
 let paused = false;
@@ -67,7 +75,16 @@ button.addEventListener('click', (e) => {
     const tooltip = document.querySelector('.tooltip');
     tooltip.style.display = 'flex';
 
-    const sortedNums = selectionSort(inputNums);
+    // Save value for a potential replay
+    replayArray = inputNums;
+
+    selectionSort(inputNums);
+
+    // Replay Button
+    const replayButton = document.querySelector('.replay-button');
+    replayButton.addEventListener('click', () => {
+      selectionSort();
+    });
   }
 });
 
@@ -92,10 +109,11 @@ const createVisual = (array) => {
 
 // delay for visualizer to handle CSS changes
 const delay = (ms) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms * speed));
 };
 
 const selectionSort = async (array) => {
+  console.log('speed on run', selectedSpeed.value);
   for (let i = 0; i < array.length - 1; i++) {
     let curr = i;
     let min = i;
@@ -150,6 +168,12 @@ const selectionSort = async (array) => {
 
   return array;
 };
+
+// // Replay Button
+// const replayButton = document.querySelector('.replay-button');
+// replayButton.addEventListener('click', () => {
+//   selectionSort();
+// });
 
 // OPTIONAL: Modal to display error messages
 // error modal functions
